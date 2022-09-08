@@ -21,9 +21,7 @@ export default function WeatherApp() {
             alt="weather icon"
           />
           <span className="TodayTemperature">19</span>{" "}
-          <span className="Units">
-            <a href="#">°C</a>|<a href="#">°F</a>
-          </span>
+          <span className="Units">°C |°F</span>
         </div>
         <div className="col-4">
           <ul>
