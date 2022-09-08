@@ -9,7 +9,7 @@ export default function WeatherApp() {
         <button type="button" className="btn btn-primary" type="Search">
           Search
         </button>
-        <button type="button" class="btn btn-light">
+        <button type="button" className="btn btn-light">
           Current location
         </button>
       </form>
