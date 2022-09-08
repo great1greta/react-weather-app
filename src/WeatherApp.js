@@ -6,12 +6,10 @@ export default function WeatherApp() {
     <div>
       <form className="mb-4">
         <input type="search" placeholder="Enter city name..." />
-        <button type="button" className="btn btn-primary" type="Search">
+        <button className="btn btn-primary" type="Search">
           Search
         </button>
-        <button type="button" className="btn btn-light">
-          Current location
-        </button>
+        <button className="btn btn-light">Current location</button>
       </form>
       <div className="CurrentTime">Saturday 18:45</div>
       <div className="row">
