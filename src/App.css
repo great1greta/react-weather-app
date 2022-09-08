@@ -1,1 +1,10 @@
-
+.App {
+  background: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  border: 2px solid rgba(255, 255, 255, 0.567);
+  border-radius: 13px;
+  box-shadow: 0 1px 20px rgb(153, 187, 224);
+  padding: 30px;
+  display: block;
+  margin: 60px 50px;
+  max-width: 700px;
+}
