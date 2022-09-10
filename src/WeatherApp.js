@@ -4,12 +4,13 @@ import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 import "./WeatherApp.css";
 
-export default function WeatherApp() {
+export default function WeatherApp(props) {
   const [loaded, setLoaded] = useState(false);
-  const [weatherData, setWeatherData] = useState({ city: "Brasil" });
-  const [city, setCity] = useState("Brasil");
+  const [weatherData, setWeatherData] = useState({});
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
+    setLoaded(true);
     setWeatherData({
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
@@ -18,40 +19,50 @@ export default function WeatherApp() {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
-    setLoaded(true);
   }
 
-  function handleRequest(event) {
-    event.preventDefault();
+  function search() {
     const apiKey = "197bcc774e27a469ef9bf7b4d6ee8b5e";
+
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   if (loaded) {
     return (
-      <div>
-        <div className="row">
-          <div className="col-7 p-0">
-            <form onSubmit={handleRequest} className=" mb-4">
+      <div className="WeatherApp">
+        <form onSubmit={handleSubmit} className=" mb-4">
+          <div className="row">
+            <div className="col-7 p-0">
               <input
                 type="search"
                 className="form-control"
                 placeholder="Enter city name..."
                 autoFocus="on"
-                onChange={(e) => setCity(e.target.value)}
+                onChange={handleCityChange}
               />
-            </form>
+            </div>
+            <div className="col-1 p-0">
+              <button className="btn btn-primary me-4" type="Search">
+                Search
+              </button>
+            </div>
+            <div className="col-4 ps-5">
+              <button className="btn btn-light border border-primary text-muted">
+                Current location
+              </button>
+            </div>
           </div>
-          <div className="col-5 p-0">
-            <button className="btn btn-primary me-4" type="Search">
-              Search
-            </button>
-            <button className="btn btn-light border border-primary text-muted">
-              Current location
-            </button>
-          </div>
-        </div>
+        </form>
 
         <div className="currentTime">
           <FormattedDate date={weatherData.date} />
@@ -75,11 +86,7 @@ export default function WeatherApp() {
       </div>
     );
   } else {
-    const apiKey = "197bcc774e27a469ef9bf7b4d6ee8b5e";
-    let city = "Brasil";
-
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
     return "Loading...";
   }
 }
