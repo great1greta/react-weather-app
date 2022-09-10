@@ -4,12 +4,13 @@ import "./WeatherApp.css";
 
 export default function WeatherApp() {
   const [loaded, setLoaded] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({ city: "London" });
+  const [city, setCity] = useState(``);
 
   function handleResponse(response) {
-    console.log(response.data);
     setLoaded(true);
     setWeatherData({
+      city: response.data.name,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
@@ -17,17 +18,25 @@ export default function WeatherApp() {
     });
   }
 
+  function handleRequest(event) {
+    event.preventDefault();
+    const apiKey = "197bcc774e27a469ef9bf7b4d6ee8b5e";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   if (loaded) {
     return (
       <div>
         <div className="row">
           <div className="col-7 p-0">
-            <form className=" mb-4">
+            <form onSubmit={handleRequest} className=" mb-4">
               <input
                 type="search"
                 className="form-control"
                 placeholder="Enter city name..."
                 autoFocus="on"
+                onChange={(e) => setCity(e.target.value)}
               />
             </form>
           </div>
@@ -55,18 +64,23 @@ export default function WeatherApp() {
           </div>
           <div className="col-6">
             <ul className="mt-4">
-              <li>Description: {weatherData.description}</li>
+              <li>
+                Description:{" "}
+                <span className="text-capitalize">
+                  {weatherData.description}
+                </span>
+              </li>
               <li>Humidity: {weatherData.humidity}%</li>
-              <li>Wind: {weatherData.wind}km/h</li>
+              <li>Wind: {Math.round(weatherData.wind)}km/h</li>
             </ul>
           </div>
         </div>
-        <h1 className="city mt-2 ">London</h1>
+        <h1 className="city mt-2 ">{weatherData.city}</h1>
       </div>
     );
   } else {
     const apiKey = "197bcc774e27a469ef9bf7b4d6ee8b5e";
-    let city = "Tokyo";
+    let city = "London";
 
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
