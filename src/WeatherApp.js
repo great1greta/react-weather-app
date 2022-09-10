@@ -4,11 +4,10 @@ import "./WeatherApp.css";
 
 export default function WeatherApp() {
   const [loaded, setLoaded] = useState(false);
-  const [weatherData, setWeatherData] = useState({ city: "London" });
-  const [city, setCity] = useState(``);
+  const [weatherData, setWeatherData] = useState({ city: "Berlin" });
+  const [city, setCity] = useState("Berlin");
 
   function handleResponse(response) {
-    setLoaded(true);
     setWeatherData({
       city: response.data.name,
       temperature: response.data.main.temp,
@@ -16,6 +15,7 @@ export default function WeatherApp() {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
+    setLoaded(true);
   }
 
   function handleRequest(event) {
@@ -80,7 +80,7 @@ export default function WeatherApp() {
     );
   } else {
     const apiKey = "197bcc774e27a469ef9bf7b4d6ee8b5e";
-    let city = "London";
+    let city = "Berlin";
 
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
