@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
+
 import "./WeatherApp.css";
 
 export default function WeatherApp(props) {
@@ -14,6 +15,7 @@ export default function WeatherApp(props) {
     setWeatherData({
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
+      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
@@ -69,10 +71,7 @@ export default function WeatherApp(props) {
         </div>
         <div className="row">
           <div className="col-6 todayCard">
-            <img
-              src="http://openweathermap.org/img/wn/01d@2x.png"
-              alt="weather icon"
-            />
+            <span>{weatherData.iconUrl}</span>
             <span className="todayTemperature">
               {Math.round(weatherData.temperature)}
             </span>
