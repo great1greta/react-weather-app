@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
+import Temperature from "./Temperature.js";
 import "./WeatherApp.css";
 
 export default function WeatherApp(props) {
@@ -77,10 +78,7 @@ export default function WeatherApp(props) {
                 alt={weatherData.description}
               />{" "}
             </span>
-            <span className="todayTemperature">
-              {Math.round(weatherData.temperature)}
-            </span>
-            <span className="units"> °C | °F</span>
+            <Temperature celsius={weatherData.temperature} />
           </div>
           <div className="col-6">
             <WeatherInfo info={weatherData} />

@@ -1,0 +1,11 @@
+.todayTemperature {
+  font-size: 60px;
+  position: relative;
+  bottom: -15px;
+}
+
+.units {
+  font-size: 18px;
+  position: relative;
+  top: -20px;
+}
