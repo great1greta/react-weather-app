@@ -3,6 +3,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 import Temperature from "./Temperature.js";
+import WeatherForecast from "./WeatherForecast";
 import "./WeatherApp.css";
 
 export default function WeatherApp(props) {
@@ -14,6 +15,7 @@ export default function WeatherApp(props) {
     setLoaded(true);
     setWeatherData({
       city: response.data.name,
+      coordinates: response.data.coord,
       date: new Date(response.data.dt * 1000),
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       temperature: response.data.main.temp,
@@ -85,6 +87,10 @@ export default function WeatherApp(props) {
           </div>
         </div>
         <h1 className="city mt-2 ">{weatherData.city}</h1>
+        <WeatherForecast
+          coordinates={weatherData.coordinates}
+          forecastIcon={weatherData.iconUrl}
+        />
       </div>
     );
   } else {

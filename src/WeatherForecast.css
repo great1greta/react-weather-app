@@ -1,0 +1,16 @@
+.col {
+  background-color: #d9e7f9;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 5px auto;
+  position: relative;
+}
+
+.WeatherForecast {
+  text-align: center;
+}
+
+.ForecastIcon {
+  size: 30;
+}
