@@ -4,6 +4,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 import Temperature from "./Temperature.js";
 import WeatherForecast from "./WeatherForecast";
+import WeatherIcon from "./WeatherIcon";
 import "./WeatherApp.css";
 
 export default function WeatherApp(props) {
@@ -15,6 +16,7 @@ export default function WeatherApp(props) {
     setLoaded(true);
     setWeatherData({
       city: response.data.name,
+
       coordinates: response.data.coord,
       date: new Date(response.data.dt * 1000),
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
@@ -73,13 +75,7 @@ export default function WeatherApp(props) {
         </div>
         <div className="row">
           <div className="col-6 todayCard">
-            <span>
-              {" "}
-              <img
-                src={weatherData.iconUrl}
-                alt={weatherData.description}
-              />{" "}
-            </span>
+            <WeatherIcon iconData={weatherData.iconUrl} />
             <Temperature celsius={weatherData.temperature} />
           </div>
           <div className="col-6">
@@ -87,10 +83,7 @@ export default function WeatherApp(props) {
           </div>
         </div>
         <h1 className="city mt-2 ">{weatherData.city}</h1>
-        <WeatherForecast
-          coordinates={weatherData.coordinates}
-          forecastIcon={weatherData.iconUrl}
-        />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
