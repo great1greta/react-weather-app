@@ -10,3 +10,7 @@
 .WeatherForecast {
   text-align: center;
 }
+
+.ForecastIcon {
+  size: 30;
+}
