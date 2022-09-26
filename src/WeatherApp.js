@@ -4,6 +4,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 import Temperature from "./Temperature.js";
 import WeatherForecast from "./WeatherForecast";
+import WeatherIcon from "./WeatherIcon";
 import "./WeatherApp.css";
 
 export default function WeatherApp(props) {
@@ -17,7 +18,7 @@ export default function WeatherApp(props) {
       city: response.data.name,
       coordinates: response.data.coord,
       date: new Date(response.data.dt * 1000),
-      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
@@ -73,10 +74,9 @@ export default function WeatherApp(props) {
         </div>
         <div className="row">
           <div className="col-6 todayCard">
-            <span>
-              {" "}
-              <img
-                src={weatherData.iconUrl}
+            <span className="icon mt=5">
+              <WeatherIcon
+                code={weatherData.icon}
                 alt={weatherData.description}
               />{" "}
             </span>
