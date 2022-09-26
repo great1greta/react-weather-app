@@ -4,7 +4,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 import Temperature from "./Temperature.js";
 import WeatherForecast from "./WeatherForecast";
-import "./styles/WeatherApp.css";
+import "./WeatherApp.css";
 
 export default function WeatherApp(props) {
   const [loaded, setLoaded] = useState(false);
