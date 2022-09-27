@@ -4,12 +4,12 @@ import WeatherIcon from "./WeatherIcon";
 export default function WeatherForecastDay(props) {
   return (
     <div>
-      <div className="ForecastDay">{props.dayData.dt} </div>
+      <div className="ForecastDay">{props.data.dt} </div>
       <div>
-        <WeatherIcon code={props.dayData.weather[0].icon} size={30} />{" "}
+        <WeatherIcon code={props.data.weather[0].icon} size={30} />{" "}
       </div>
-      <span className="Forecast-temp-max">{props.dayData.temp.max}°</span>
-      <span className="Forecast-temp-min">{props.dayData.temp.min}°</span>
+      <span className="Forecast-temp-max">{props.data.temp.max}°</span>
+      <span className="Forecast-temp-min">{props.data.temp.min}°</span>
     </div>
   );
 }
