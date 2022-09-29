@@ -69,7 +69,7 @@ export default function WeatherApp(props) {
         </div>
         <div className="row">
           <div className="col-6 todayCard">
-            <span className="icon">
+            <span className="icon mt-3">
               <WeatherIcon
                 code={weatherData.icon}
                 alt={weatherData.description}
