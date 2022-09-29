@@ -47,7 +47,7 @@ export default function WeatherApp(props) {
       <div className="WeatherApp">
         <form onSubmit={handleSubmit} className=" mb-4">
           <div className="row">
-            <div className="col-7 p-0">
+            <div className="col-10 p-0">
               <input
                 type="search"
                 className="form-control"
@@ -56,14 +56,9 @@ export default function WeatherApp(props) {
                 onChange={handleCityChange}
               />
             </div>
-            <div className="col-1 p-0">
+            <div className="col-2 p-0">
               <button className="btn btn-primary me-4" type="Search">
                 Search
-              </button>
-            </div>
-            <div className="col-4 ps-5">
-              <button className="btn btn-light border border-primary text-muted">
-                Current location
               </button>
             </div>
           </div>
